@@ -15,6 +15,7 @@ protocol MainActions: AnyObject {
 
 protocol IMainPresenter {
     func viewDidLoad()
+    func updateBalance(newBalance: Double?)
 }
 
 final class MainPresenter: IMainPresenter, MainActions {
@@ -69,16 +70,23 @@ final class MainPresenter: IMainPresenter, MainActions {
     
     // MARK: - IMainPresenter
     
-    func viewDidLoad() {        
+    func viewDidLoad() {
         viewModelFactory.balance = balance
         view?.setup(with: viewModelFactory.makeViewModel(actions: self))
         getExchangeRate()
     }
     
+    func updateBalance(newBalance: Double?) {
+        if balance != nil {
+            balance! += newBalance ?? .zero // swiftlint:disable:this force_unwrapping
+            view?.updateBalanceLabel(balance: balance)
+        }
+    }
+        
     // MARK: - MainActions
     
     func didTapBtTopUpBalance() {
-        print("didTapBtTopUpBalance")
+        view?.showTopUpBalanceAlert()
     }
     
     func didTapBtAddTransaction() {
