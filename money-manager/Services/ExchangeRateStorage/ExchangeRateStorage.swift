@@ -18,7 +18,7 @@ final class ExchangeRateStorage: IExchangeRateStorage {
     // MARK: - Properties
     
     private let storage: Storable
-    private let kEnvironmentKey: String = "kExchangeRateKey"
+    private let kExchangeRateKey: String = "kExchangeRateKey"
 
     // MARK: - Initialization
     
@@ -29,14 +29,14 @@ final class ExchangeRateStorage: IExchangeRateStorage {
     // MARK: - IExchangeRateStorage
 
     func getExchangeRate() -> BitcoinData? {
-        return storage.value(forKey: kEnvironmentKey)
+        return storage.value(forKey: kExchangeRateKey)
     }
 
     func saveExchangeRate(_ exchnageRate: BitcoinData) {
-        storage.set(exchnageRate, forKey: kEnvironmentKey)
+        storage.set(exchnageRate, forKey: kExchangeRateKey)
     }
 
     func clear() {
-        storage.clearValue(forKey: kEnvironmentKey)
+        storage.clearValue(forKey: kExchangeRateKey)
     }
 }
