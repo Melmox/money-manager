@@ -16,9 +16,9 @@ final class MainViewController: BaseViewController, IMainViewController {
     // MARK: - UI Elements
     
     private let lbExchangeRate: UILabel = UILabel()
-    private let svBallanceContainer: UIStackView = UIStackView()
-    private let lbBallance: UILabel = UILabel()
-    private let btTopUpBallance: UIButton = UIButton()
+    private let svBalanceContainer: UIStackView = UIStackView()
+    private let lbBalance: UILabel = UILabel()
+    private let btTopUpBalance: UIButton = UIButton()
     private let btAddTransaction: UIButton = UIButton()
     private let tvTransactionHistory: UITableView = UITableView()
     
@@ -54,9 +54,9 @@ final class MainViewController: BaseViewController, IMainViewController {
         self.view.backgroundColor = .lightText
         
         setupLbExchangeRate()
-        setupSvBallanceContainer()
-        setupLbBallance()
-        setupBtTopUpBallance()
+        setupSvBalanceContainer()
+        setupLbBalance()
+        setupBtTopUpBalance()
         setuptBAddTransaction()
         setupTvTransactionHistory()
     }
@@ -74,31 +74,31 @@ final class MainViewController: BaseViewController, IMainViewController {
         ])
     }
     
-    private func setupSvBallanceContainer() {
-        view.addSubview(svBallanceContainer)
+    private func setupSvBalanceContainer() {
+        view.addSubview(svBalanceContainer)
         
-        svBallanceContainer.axis = .horizontal
-        svBallanceContainer.alignment = .fill
-        svBallanceContainer.distribution = .fillEqually
-        svBallanceContainer.spacing = 8
+        svBalanceContainer.axis = .horizontal
+        svBalanceContainer.alignment = .fill
+        svBalanceContainer.distribution = .fillEqually
+        svBalanceContainer.spacing = 8
         
-        svBallanceContainer.translatesAutoresizingMaskIntoConstraints = false
+        svBalanceContainer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            svBallanceContainer.topAnchor.constraint(equalTo: lbExchangeRate.bottomAnchor, constant: 24),
-            svBallanceContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            svBallanceContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            svBalanceContainer.topAnchor.constraint(equalTo: lbExchangeRate.bottomAnchor, constant: 24),
+            svBalanceContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            svBalanceContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
     }
     
-    private func setupLbBallance() {
-        svBallanceContainer.addArrangedSubview(lbBallance)
-        lbBallance.text = "lbBallance"
+    private func setupLbBalance() {
+        svBalanceContainer.addArrangedSubview(lbBalance)
+        lbBalance.text = "lbBalance"
     }
     
-    private func setupBtTopUpBallance() {
-        svBallanceContainer.addArrangedSubview(btTopUpBallance)
-        btTopUpBallance.backgroundColor = .systemRed
-        btTopUpBallance.setTitle("btTopUpBallance", for: .normal)
+    private func setupBtTopUpBalance() {
+        svBalanceContainer.addArrangedSubview(btTopUpBalance)
+        btTopUpBalance.backgroundColor = .systemRed
+        btTopUpBalance.setTitle("btTopUpBalance", for: .normal)
     }
     
     private func setuptBAddTransaction() {
@@ -109,7 +109,7 @@ final class MainViewController: BaseViewController, IMainViewController {
         
         btAddTransaction.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            btAddTransaction.topAnchor.constraint(equalTo: svBallanceContainer.bottomAnchor, constant: 24),
+            btAddTransaction.topAnchor.constraint(equalTo: svBalanceContainer.bottomAnchor, constant: 24),
             btAddTransaction.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             btAddTransaction.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
