@@ -9,6 +9,7 @@ import UIKit
 
 protocol IMainViewController: UIViewController, ActivityShowable {
     func setup(with viewModel: MainViewModel)
+    func updateExchangeRateInLabel(exchangeRate: String?)
 }
 
 final class MainViewController: BaseViewController, IMainViewController {
@@ -63,9 +64,7 @@ final class MainViewController: BaseViewController, IMainViewController {
     
     private func setupLbExchangeRate() {
         view.addSubview(lbExchangeRate)
-        
-        lbExchangeRate.text = "lbExchangeRate"
-        
+                
         lbExchangeRate.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             lbExchangeRate.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
@@ -92,20 +91,15 @@ final class MainViewController: BaseViewController, IMainViewController {
     
     private func setupLbBalance() {
         svBalanceContainer.addArrangedSubview(lbBalance)
-        lbBalance.text = "lbBalance"
+        lbBalance.numberOfLines = 0
     }
     
     private func setupBtTopUpBalance() {
         svBalanceContainer.addArrangedSubview(btTopUpBalance)
-        btTopUpBalance.backgroundColor = .systemRed
-        btTopUpBalance.setTitle("btTopUpBalance", for: .normal)
     }
     
     private func setuptBAddTransaction() {
         view.addSubview(btAddTransaction)
-        
-        btAddTransaction.backgroundColor = .systemGreen
-        btAddTransaction.setTitle("btAddTransaction", for: .normal)
         
         btAddTransaction.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -132,8 +126,15 @@ final class MainViewController: BaseViewController, IMainViewController {
     // MARK: - IMainViewController
     
     func setup(with viewModel: MainViewModel) {
+        lbBalance.text = viewModel.balance
+        btTopUpBalance.setup(with: viewModel.btTopUpBalance)
+        btAddTransaction.setup(with: viewModel.btAddTransaction)
+    }
+    
+    func updateExchangeRateInLabel(exchangeRate: String?) {
         DispatchQueue.main.async {
-            self.lbExchangeRate.text = "!@#$%^&*()(*&^%"
+            guard let exchangeRate: String = exchangeRate else { return }
+            self.lbExchangeRate.text = "1 BTC = \(exchangeRate) USD"
         }
     }
 }

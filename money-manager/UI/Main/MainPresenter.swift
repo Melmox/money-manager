@@ -8,18 +8,33 @@
 import Foundation
 import UIKit
 
+protocol MainActions: AnyObject {
+    func didTapBtTopUpBalance()
+    func didTapBtAddTransaction()
+}
+
 protocol IMainPresenter {
     func viewDidLoad()
 }
 
-final class MainPresenter: IMainPresenter {
+final class MainPresenter: IMainPresenter, MainActions {
     
     // MARK: - Properties
     
     weak var view: IMainViewController?
-    private let viewModelFactory: IMainViewModelFactory
+    private var viewModelFactory: IMainViewModelFactory
     private let router: IMainRouter
     private let exchangeRateService: IExchangeRateService
+    private let ballanceStorage: IBalanceStorage = BalanceStorage()
+    
+    private var balance: Double? {
+        get {
+            return ballanceStorage.getBalance()
+        }
+        set(newBalance) {
+            ballanceStorage.saveBalance(newBalance)
+        }
+    }
     
     // MARK: - Initialization
 
@@ -40,18 +55,34 @@ final class MainPresenter: IMainPresenter {
             self?.view?.removeActivityIndicator()
 
             switch result {
-            case .success(let exchangeRate):
-                self?.view?.setup(with: MainViewModel())
+            case .success(let bitcoinData):
+                self?.view?.updateExchangeRateInLabel(exchangeRate: self?.getExchangeRateToUSD(bitcoinData: bitcoinData))
             case .failure:
                 break
             }
         }
     }
     
+    private func getExchangeRateToUSD(bitcoinData: BitcoinData) -> String? {
+        bitcoinData.bpi["USD"]?.rate
+    }
+    
     // MARK: - IMainPresenter
     
-    func viewDidLoad() {
+    func viewDidLoad() {        
+        viewModelFactory.balance = balance
+        view?.setup(with: viewModelFactory.makeViewModel(actions: self))
         getExchangeRate()
+    }
+    
+    // MARK: - MainActions
+    
+    func didTapBtTopUpBalance() {
+        print("didTapBtTopUpBalance")
+    }
+    
+    func didTapBtAddTransaction() {
+        print("didTapBtAddTransaction")
     }
     
     // MARK: - Actions
