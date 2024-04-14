@@ -24,6 +24,11 @@
 		8BCE29932BCBDD33007DDE0D /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29922BCBDD33007DDE0D /* NetworkError.swift */; };
 		8BCE29972BCBF2F8007DDE0D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29962BCBF2F8007DDE0D /* NetworkService.swift */; };
 		8BCE299A2BCC0BC0007DDE0D /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29992BCC0BC0007DDE0D /* ExchangeRateService.swift */; };
+		8BCE299E2BCC26EE007DDE0D /* ActivityShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE299D2BCC26EE007DDE0D /* ActivityShowable.swift */; };
+		8BCE29A02BCC2718007DDE0D /* UIView+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE299F2BCC2718007DDE0D /* UIView+Activity.swift */; };
+		8BCE29A32BCC2C6C007DDE0D /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29A22BCC2C6C007DDE0D /* Storable.swift */; };
+		8BCE29A52BCC2C9B007DDE0D /* UDStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29A42BCC2C9A007DDE0D /* UDStorage.swift */; };
+		8BCE29A82BCC2D5E007DDE0D /* ExchangeRateStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29A72BCC2D5E007DDE0D /* ExchangeRateStorage.swift */; };
 		8BF90ADE2BCB07F5001C268A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF90ADD2BCB07F5001C268A /* AppDelegate.swift */; };
 		8BF90AE82BCB07F5001C268A /* money_manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8BF90AE62BCB07F5001C268A /* money_manager.xcdatamodeld */; };
 		8BF90AEA2BCB07F7001C268A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BF90AE92BCB07F7001C268A /* Assets.xcassets */; };
@@ -48,6 +53,11 @@
 		8BCE29922BCBDD33007DDE0D /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		8BCE29962BCBF2F8007DDE0D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8BCE29992BCC0BC0007DDE0D /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
+		8BCE299D2BCC26EE007DDE0D /* ActivityShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityShowable.swift; sourceTree = "<group>"; };
+		8BCE299F2BCC2718007DDE0D /* UIView+Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Activity.swift"; sourceTree = "<group>"; };
+		8BCE29A22BCC2C6C007DDE0D /* Storable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
+		8BCE29A42BCC2C9A007DDE0D /* UDStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDStorage.swift; sourceTree = "<group>"; };
+		8BCE29A72BCC2D5E007DDE0D /* ExchangeRateStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateStorage.swift; sourceTree = "<group>"; };
 		8BF90ADA2BCB07F5001C268A /* money-manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "money-manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BF90ADD2BCB07F5001C268A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BF90AE72BCB07F5001C268A /* money_manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = money_manager.xcdatamodel; sourceTree = "<group>"; };
@@ -70,6 +80,7 @@
 		8BCE296A2BCB1580007DDE0D /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8BCE299B2BCC26D2007DDE0D /* Common */,
 				8BCE29752BCBBB73007DDE0D /* Main */,
 				8BCE296B2BCB15A6007DDE0D /* Base */,
 			);
@@ -87,6 +98,8 @@
 		8BCE296E2BCB1705007DDE0D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8BCE29A62BCC2D11007DDE0D /* ExchangeRateStorage */,
+				8BCE29A12BCC2C5F007DDE0D /* Storage */,
 				8BCE29982BCC0B44007DDE0D /* ExchangeRateService */,
 				8BCE296F2BCB1724007DDE0D /* FlowCoordinator */,
 			);
@@ -106,6 +119,7 @@
 			children = (
 				8BCE29732BCBB9C3007DDE0D /* UIView+Keyboard.swift */,
 				8BCE29902BCBDCF0007DDE0D /* JSONDecoder.swift */,
+				8BCE299F2BCC2718007DDE0D /* UIView+Activity.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -174,6 +188,39 @@
 				8BCE29992BCC0BC0007DDE0D /* ExchangeRateService.swift */,
 			);
 			path = ExchangeRateService;
+			sourceTree = "<group>";
+		};
+		8BCE299B2BCC26D2007DDE0D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8BCE299C2BCC26E2007DDE0D /* Protocols */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		8BCE299C2BCC26E2007DDE0D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8BCE299D2BCC26EE007DDE0D /* ActivityShowable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		8BCE29A12BCC2C5F007DDE0D /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				8BCE29A22BCC2C6C007DDE0D /* Storable.swift */,
+				8BCE29A42BCC2C9A007DDE0D /* UDStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		8BCE29A62BCC2D11007DDE0D /* ExchangeRateStorage */ = {
+			isa = PBXGroup;
+			children = (
+				8BCE29A72BCC2D5E007DDE0D /* ExchangeRateStorage.swift */,
+			);
+			path = ExchangeRateStorage;
 			sourceTree = "<group>";
 		};
 		8BF90AD12BCB07F5001C268A = {
@@ -301,12 +348,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BCE29712BCB1729007DDE0D /* FlowCoordinator.swift in Sources */,
+				8BCE29A02BCC2718007DDE0D /* UIView+Activity.swift in Sources */,
 				8BCE29912BCBDCF0007DDE0D /* JSONDecoder.swift in Sources */,
+				8BCE29A52BCC2C9B007DDE0D /* UDStorage.swift in Sources */,
+				8BCE29A32BCC2C6C007DDE0D /* Storable.swift in Sources */,
 				8BCE298D2BCBDC3D007DDE0D /* ExchangeRate.swift in Sources */,
 				8BCE29892BCBDB0D007DDE0D /* Request.swift in Sources */,
 				8BCE298B2BCBDB41007DDE0D /* HTTPMethod.swift in Sources */,
+				8BCE29A82BCC2D5E007DDE0D /* ExchangeRateStorage.swift in Sources */,
 				8BCE298F2BCBDCC6007DDE0D /* Parser.swift in Sources */,
 				8BF90AE82BCB07F5001C268A /* money_manager.xcdatamodeld in Sources */,
+				8BCE299E2BCC26EE007DDE0D /* ActivityShowable.swift in Sources */,
 				8BCE299A2BCC0BC0007DDE0D /* ExchangeRateService.swift in Sources */,
 				8BCE29792BCBBBB6007DDE0D /* MainAssembly.swift in Sources */,
 				8BCE297B2BCBBBC2007DDE0D /* MainPresenter.swift in Sources */,

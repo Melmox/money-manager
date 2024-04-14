@@ -17,9 +17,11 @@ final class MainAssembly: IMainAssembly {
 
         let viewModelFactory: MainViewModelFactory = MainViewModelFactory()
         let router: MainRouter = MainRouter()
+        let exchangeRateService: IExchangeRateService = ExchangeRateService()
         let presenter: MainPresenter = MainPresenter(
             viewModelFactory: viewModelFactory,
-            router: router
+            router: router,
+            exchangeRateService: exchangeRateService
         )
         let view: MainViewController = MainViewController(presenter: presenter)
         presenter.view = view
