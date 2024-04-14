@@ -7,7 +7,9 @@
 
 import UIKit
 
-protocol IMainViewController: UIViewController { }
+protocol IMainViewController: UIViewController, ActivityShowable {
+    func setup(with viewModel: MainViewModel)
+}
 
 final class MainViewController: BaseViewController, IMainViewController {
     
@@ -42,6 +44,7 @@ final class MainViewController: BaseViewController, IMainViewController {
         super.viewDidLoad()
         
         setupUI()
+        presenter.viewDidLoad()
     }
     
     // MARK: - Private Functions
@@ -124,5 +127,13 @@ final class MainViewController: BaseViewController, IMainViewController {
             tvTransactionHistory.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             tvTransactionHistory.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
         ])
+    }
+    
+    // MARK: - IMainViewController
+    
+    func setup(with viewModel: MainViewModel) {
+        DispatchQueue.main.async {
+            self.lbExchangeRate.text = "!@#$%^&*()(*&^%"
+        }
     }
 }

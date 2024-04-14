@@ -17,6 +17,7 @@ final class ExchangeRateService: IExchangeRateService {
     
     private let networkService: INetworkService
     private let parser: Parser
+    private let exchangeRateStorage: IExchangeRateStorage = ExchangeRateStorage()
     
     // MARK: - Initialization
     
@@ -34,6 +35,22 @@ final class ExchangeRateService: IExchangeRateService {
         let request: Request = Request(
             path: "https://api.coindesk.com/v1/bpi/currentprice.json",
             method: .get)
-        networkService.request(request: request, parser: parser, completion: completion)
+        
+        if let exchangeRate: BitcoinData = exchangeRateStorage.getExchangeRate(),
+           Date().timeIntervalSince1970 < exchangeRate.creationTime + 3600 {
+            completion(.success(exchangeRate))
+            return
+        }
+        
+        networkService.request(request: request, parser: parser) { [weak self] (result: Result<BitcoinData, NetworkError>) in
+            
+            switch result {
+            case .success(let exnchageRate):
+                self?.exchangeRateStorage.saveExchangeRate(exnchageRate)
+                completion(.success(exnchageRate))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }
