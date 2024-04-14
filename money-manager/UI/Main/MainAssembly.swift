@@ -12,8 +12,18 @@ protocol IMainAssembly {
 }
 
 final class MainAssembly: IMainAssembly {
-
+    
     func assemble() -> UIViewController {
-        UIViewController()
+
+        let viewModelFactory: MainViewModelFactory = MainViewModelFactory()
+        let router: MainRouter = MainRouter()
+        let presenter: MainPresenter = MainPresenter(
+            viewModelFactory: viewModelFactory,
+            router: router
+        )
+        let view: MainViewController = MainViewController(presenter: presenter)
+        presenter.view = view
+
+        return UINavigationController(rootViewController: view)
     }
 }

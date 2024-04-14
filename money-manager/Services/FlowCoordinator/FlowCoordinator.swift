@@ -16,11 +16,13 @@ final class FlowCoordinator: IFlowCoordinator {
     // MARK: - Properties
     
     private weak var window: UIWindow?
+    private let mainAssembly: IMainAssembly
     
     // MARK: - Initialization
 
-    init(window: UIWindow) {
+    init(window: UIWindow, mainAssembly: IMainAssembly = MainAssembly()) {
         self.window = window
+        self.mainAssembly = mainAssembly
     }
     
     // MARK: - Private functions
@@ -59,12 +61,13 @@ final class FlowCoordinator: IFlowCoordinator {
 
     
     private func switchToStart() {
-        
+        switchTo(mainAssembly.assemble())
     }
 
     // MARK: - IFlowCoordinator
     
     func start() {
+        window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
         
         switchToStart()
