@@ -32,6 +32,13 @@
 		8BCE29AB2BCC42CB007DDE0D /* BalanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29AA2BCC42CB007DDE0D /* BalanceStorage.swift */; };
 		8BCE29AE2BCC463C007DDE0D /* UIButton+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29AD2BCC463C007DDE0D /* UIButton+Setup.swift */; };
 		8BCE29B02BCC46A0007DDE0D /* UIButton+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29AF2BCC46A0007DDE0D /* UIButton+Action.swift */; };
+		8BCE29B52BCC658B007DDE0D /* AddTransactionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29B42BCC658B007DDE0D /* AddTransactionAssembly.swift */; };
+		8BCE29B72BCC6594007DDE0D /* AddTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29B62BCC6594007DDE0D /* AddTransactionPresenter.swift */; };
+		8BCE29B92BCC659A007DDE0D /* AddTransactionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29B82BCC659A007DDE0D /* AddTransactionRouter.swift */; };
+		8BCE29BB2BCC65A5007DDE0D /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29BA2BCC65A5007DDE0D /* AddTransactionViewController.swift */; };
+		8BCE29BD2BCC6744007DDE0D /* AddTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29BC2BCC6744007DDE0D /* AddTransactionViewModel.swift */; };
+		8BCE29BF2BCC6750007DDE0D /* AddTransactionViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29BE2BCC6750007DDE0D /* AddTransactionViewModelFactory.swift */; };
+		8BCE29C12BCC727D007DDE0D /* UITextField+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29C02BCC727D007DDE0D /* UITextField+Setup.swift */; };
 		8BF90ADE2BCB07F5001C268A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF90ADD2BCB07F5001C268A /* AppDelegate.swift */; };
 		8BF90AE82BCB07F5001C268A /* money_manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8BF90AE62BCB07F5001C268A /* money_manager.xcdatamodeld */; };
 		8BF90AEA2BCB07F7001C268A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BF90AE92BCB07F7001C268A /* Assets.xcassets */; };
@@ -64,6 +71,13 @@
 		8BCE29AA2BCC42CB007DDE0D /* BalanceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceStorage.swift; sourceTree = "<group>"; };
 		8BCE29AD2BCC463C007DDE0D /* UIButton+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Setup.swift"; sourceTree = "<group>"; };
 		8BCE29AF2BCC46A0007DDE0D /* UIButton+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Action.swift"; sourceTree = "<group>"; };
+		8BCE29B42BCC658B007DDE0D /* AddTransactionAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionAssembly.swift; sourceTree = "<group>"; };
+		8BCE29B62BCC6594007DDE0D /* AddTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenter.swift; sourceTree = "<group>"; };
+		8BCE29B82BCC659A007DDE0D /* AddTransactionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionRouter.swift; sourceTree = "<group>"; };
+		8BCE29BA2BCC65A5007DDE0D /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		8BCE29BC2BCC6744007DDE0D /* AddTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewModel.swift; sourceTree = "<group>"; };
+		8BCE29BE2BCC6750007DDE0D /* AddTransactionViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewModelFactory.swift; sourceTree = "<group>"; };
+		8BCE29C02BCC727D007DDE0D /* UITextField+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Setup.swift"; sourceTree = "<group>"; };
 		8BF90ADA2BCB07F5001C268A /* money-manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "money-manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BF90ADD2BCB07F5001C268A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BF90AE72BCB07F5001C268A /* money_manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = money_manager.xcdatamodel; sourceTree = "<group>"; };
@@ -88,6 +102,7 @@
 			children = (
 				8BCE299B2BCC26D2007DDE0D /* Common */,
 				8BCE29752BCBBB73007DDE0D /* Main */,
+				8BCE29B12BCC6558007DDE0D /* AddTransaction */,
 				8BCE296B2BCB15A6007DDE0D /* Base */,
 			);
 			path = UI;
@@ -129,6 +144,7 @@
 				8BCE299F2BCC2718007DDE0D /* UIView+Activity.swift */,
 				8BCE29AD2BCC463C007DDE0D /* UIButton+Setup.swift */,
 				8BCE29AF2BCC46A0007DDE0D /* UIButton+Action.swift */,
+				8BCE29C02BCC727D007DDE0D /* UITextField+Setup.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -238,6 +254,35 @@
 				8BCE29AA2BCC42CB007DDE0D /* BalanceStorage.swift */,
 			);
 			path = BalanceStorage;
+			sourceTree = "<group>";
+		};
+		8BCE29B12BCC6558007DDE0D /* AddTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				8BCE29B22BCC6569007DDE0D /* Factories */,
+				8BCE29B32BCC6576007DDE0D /* ViewModels */,
+				8BCE29B42BCC658B007DDE0D /* AddTransactionAssembly.swift */,
+				8BCE29B62BCC6594007DDE0D /* AddTransactionPresenter.swift */,
+				8BCE29B82BCC659A007DDE0D /* AddTransactionRouter.swift */,
+				8BCE29BA2BCC65A5007DDE0D /* AddTransactionViewController.swift */,
+			);
+			path = AddTransaction;
+			sourceTree = "<group>";
+		};
+		8BCE29B22BCC6569007DDE0D /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				8BCE29BE2BCC6750007DDE0D /* AddTransactionViewModelFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		8BCE29B32BCC6576007DDE0D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8BCE29BC2BCC6744007DDE0D /* AddTransactionViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		8BF90AD12BCB07F5001C268A = {
@@ -367,6 +412,7 @@
 				8BCE29712BCB1729007DDE0D /* FlowCoordinator.swift in Sources */,
 				8BCE29A02BCC2718007DDE0D /* UIView+Activity.swift in Sources */,
 				8BCE29AB2BCC42CB007DDE0D /* BalanceStorage.swift in Sources */,
+				8BCE29BB2BCC65A5007DDE0D /* AddTransactionViewController.swift in Sources */,
 				8BCE29912BCBDCF0007DDE0D /* JSONDecoder.swift in Sources */,
 				8BCE29A52BCC2C9B007DDE0D /* UDStorage.swift in Sources */,
 				8BCE29A32BCC2C6C007DDE0D /* Storable.swift in Sources */,
@@ -374,13 +420,17 @@
 				8BCE29892BCBDB0D007DDE0D /* Request.swift in Sources */,
 				8BCE298B2BCBDB41007DDE0D /* HTTPMethod.swift in Sources */,
 				8BCE29A82BCC2D5E007DDE0D /* ExchangeRateStorage.swift in Sources */,
+				8BCE29B52BCC658B007DDE0D /* AddTransactionAssembly.swift in Sources */,
 				8BCE298F2BCBDCC6007DDE0D /* Parser.swift in Sources */,
 				8BF90AE82BCB07F5001C268A /* money_manager.xcdatamodeld in Sources */,
 				8BCE299E2BCC26EE007DDE0D /* ActivityShowable.swift in Sources */,
 				8BCE299A2BCC0BC0007DDE0D /* ExchangeRateService.swift in Sources */,
+				8BCE29B92BCC659A007DDE0D /* AddTransactionRouter.swift in Sources */,
 				8BCE29792BCBBBB6007DDE0D /* MainAssembly.swift in Sources */,
 				8BCE297B2BCBBBC2007DDE0D /* MainPresenter.swift in Sources */,
+				8BCE29BD2BCC6744007DDE0D /* AddTransactionViewModel.swift in Sources */,
 				8BCE29B02BCC46A0007DDE0D /* UIButton+Action.swift in Sources */,
+				8BCE29B72BCC6594007DDE0D /* AddTransactionPresenter.swift in Sources */,
 				8BCE29972BCBF2F8007DDE0D /* NetworkService.swift in Sources */,
 				8BCE296D2BCB15E6007DDE0D /* BaseViewController.swift in Sources */,
 				8BCE29832BCBBC3D007DDE0D /* MainViewModelFactory.swift in Sources */,
@@ -388,7 +438,9 @@
 				8BCE29742BCBB9C3007DDE0D /* UIView+Keyboard.swift in Sources */,
 				8BCE297D2BCBBBCF007DDE0D /* MainRouter.swift in Sources */,
 				8BCE29932BCBDD33007DDE0D /* NetworkError.swift in Sources */,
+				8BCE29C12BCC727D007DDE0D /* UITextField+Setup.swift in Sources */,
 				8BCE297F2BCBBBEB007DDE0D /* MainViewController.swift in Sources */,
+				8BCE29BF2BCC6750007DDE0D /* AddTransactionViewModelFactory.swift in Sources */,
 				8BCE29812BCBBC2C007DDE0D /* MainViewModel.swift in Sources */,
 				8BCE29AE2BCC463C007DDE0D /* UIButton+Setup.swift in Sources */,
 			);

@@ -14,9 +14,10 @@ protocol IMainAssembly {
 final class MainAssembly: IMainAssembly {
     
     func assemble() -> UIViewController {
+        let addTransactionAssembly: IAddTransactionAssembly = AddTransactionAssembly()
 
         let viewModelFactory: MainViewModelFactory = MainViewModelFactory()
-        let router: MainRouter = MainRouter()
+        let router: MainRouter = MainRouter(addTransactionAssembly: addTransactionAssembly)
         let exchangeRateService: IExchangeRateService = ExchangeRateService()
         let presenter: MainPresenter = MainPresenter(
             viewModelFactory: viewModelFactory,
@@ -25,6 +26,7 @@ final class MainAssembly: IMainAssembly {
         )
         let view: MainViewController = MainViewController(presenter: presenter)
         presenter.view = view
+        router.transitionHandler = view
 
         return UINavigationController(rootViewController: view)
     }

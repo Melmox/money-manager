@@ -52,7 +52,7 @@ final class MainViewController: BaseViewController, IMainViewController {
     
     private func setupUI() {
         self.navigationController?.isNavigationBarHidden = true
-        self.view.backgroundColor = .lightText
+        self.view.backgroundColor = .systemBackground
         
         setupLbExchangeRate()
         setupSvBalanceContainer()
