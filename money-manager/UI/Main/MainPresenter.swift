@@ -8,18 +8,34 @@
 import Foundation
 import UIKit
 
-protocol IMainPresenter {
-    func viewDidLoad()
+protocol MainActions: AnyObject {
+    func didTapBtTopUpBalance()
+    func didTapBtAddTransaction()
 }
 
-final class MainPresenter: IMainPresenter {
+protocol IMainPresenter {
+    func viewDidLoad()
+    func updateBalance(newBalance: Double?)
+}
+
+final class MainPresenter: IMainPresenter, MainActions {
     
     // MARK: - Properties
     
     weak var view: IMainViewController?
-    private let viewModelFactory: IMainViewModelFactory
+    private var viewModelFactory: IMainViewModelFactory
     private let router: IMainRouter
     private let exchangeRateService: IExchangeRateService
+    private let ballanceStorage: IBalanceStorage = BalanceStorage()
+    
+    private var balance: Double? {
+        get {
+            return ballanceStorage.getBalance()
+        }
+        set(newBalance) {
+            ballanceStorage.saveBalance(newBalance)
+        }
+    }
     
     // MARK: - Initialization
 
@@ -40,18 +56,41 @@ final class MainPresenter: IMainPresenter {
             self?.view?.removeActivityIndicator()
 
             switch result {
-            case .success(let exchangeRate):
-                self?.view?.setup(with: MainViewModel())
+            case .success(let bitcoinData):
+                self?.view?.updateExchangeRateInLabel(exchangeRate: self?.getExchangeRateToUSD(bitcoinData: bitcoinData))
             case .failure:
                 break
             }
         }
     }
     
+    private func getExchangeRateToUSD(bitcoinData: BitcoinData) -> String? {
+        bitcoinData.bpi["USD"]?.rate
+    }
+    
     // MARK: - IMainPresenter
     
     func viewDidLoad() {
+        viewModelFactory.balance = balance
+        view?.setup(with: viewModelFactory.makeViewModel(actions: self))
         getExchangeRate()
+    }
+    
+    func updateBalance(newBalance: Double?) {
+        if balance != nil {
+            balance! += newBalance ?? .zero // swiftlint:disable:this force_unwrapping
+            view?.updateBalanceLabel(balance: balance)
+        }
+    }
+        
+    // MARK: - MainActions
+    
+    func didTapBtTopUpBalance() {
+        view?.showTopUpBalanceAlert()
+    }
+    
+    func didTapBtAddTransaction() {
+        print("didTapBtAddTransaction")
     }
     
     // MARK: - Actions

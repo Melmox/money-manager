@@ -9,6 +9,9 @@ import UIKit
 
 protocol IMainViewController: UIViewController, ActivityShowable {
     func setup(with viewModel: MainViewModel)
+    func updateExchangeRateInLabel(exchangeRate: String?)
+    func updateBalanceLabel(balance: Double?)
+    func showTopUpBalanceAlert()
 }
 
 final class MainViewController: BaseViewController, IMainViewController {
@@ -63,9 +66,7 @@ final class MainViewController: BaseViewController, IMainViewController {
     
     private func setupLbExchangeRate() {
         view.addSubview(lbExchangeRate)
-        
-        lbExchangeRate.text = "lbExchangeRate"
-        
+                
         lbExchangeRate.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             lbExchangeRate.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
@@ -92,20 +93,15 @@ final class MainViewController: BaseViewController, IMainViewController {
     
     private func setupLbBalance() {
         svBalanceContainer.addArrangedSubview(lbBalance)
-        lbBalance.text = "lbBalance"
+        lbBalance.numberOfLines = 0
     }
     
     private func setupBtTopUpBalance() {
         svBalanceContainer.addArrangedSubview(btTopUpBalance)
-        btTopUpBalance.backgroundColor = .systemRed
-        btTopUpBalance.setTitle("btTopUpBalance", for: .normal)
     }
     
     private func setuptBAddTransaction() {
         view.addSubview(btAddTransaction)
-        
-        btAddTransaction.backgroundColor = .systemGreen
-        btAddTransaction.setTitle("btAddTransaction", for: .normal)
         
         btAddTransaction.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -132,8 +128,56 @@ final class MainViewController: BaseViewController, IMainViewController {
     // MARK: - IMainViewController
     
     func setup(with viewModel: MainViewModel) {
+        lbBalance.text = viewModel.balance
+        btTopUpBalance.setup(with: viewModel.btTopUpBalance)
+        btAddTransaction.setup(with: viewModel.btAddTransaction)
+    }
+    
+    func updateExchangeRateInLabel(exchangeRate: String?) {
         DispatchQueue.main.async {
-            self.lbExchangeRate.text = "!@#$%^&*()(*&^%"
+            guard let exchangeRate: String = exchangeRate else { return }
+            self.lbExchangeRate.text = "1 BTC = \(exchangeRate) USD"
         }
+    }
+    
+    func updateBalanceLabel(balance: Double?) {
+        guard let balance: Double = balance else { return }
+        lbBalance.text = "Your current balance is \(balance) BTC"
+    }
+    
+    func showTopUpBalanceAlert() {
+        let alertTopUpBalance: UIAlertController = UIAlertController(title: "Top up your balance", message: "Type amount in BTC", preferredStyle: .alert)
+
+        alertTopUpBalance.addTextField { (textField) in
+            textField.placeholder = "Amount"
+            textField.keyboardType = .decimalPad
+            textField.delegate = self
+        }
+
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let topUpAction: UIAlertAction = UIAlertAction(title: "Top Up", style: .default) { [weak self] _ in
+            let topUpSum: Double? = Double(alertTopUpBalance.textFields?.first?.text ?? "")
+            self?.presenter.updateBalance(newBalance: topUpSum)
+        }
+
+        alertTopUpBalance.addAction(cancelAction)
+        alertTopUpBalance.addAction(topUpAction)
+        present(alertTopUpBalance, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension MainViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters: CharacterSet = CharacterSet(charactersIn: "0123456789.").union(.init(charactersIn: ""))
+        let isValid: Bool = string.rangeOfCharacter(from: allowedCharacters.inverted) == nil
+
+        let currentText: String = textField.text ?? ""
+        let newString: String = (currentText as NSString).replacingCharacters(in: range, with: string)
+        let components: [String] = newString.components(separatedBy: ".")
+        let numberOfDecimals: Int = components.count - 1
+
+        return isValid && numberOfDecimals <= 1
     }
 }
