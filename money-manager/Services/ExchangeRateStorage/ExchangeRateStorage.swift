@@ -33,7 +33,8 @@ final class ExchangeRateStorage: IExchangeRateStorage {
     }
 
     func saveExchangeRate(_ exchnageRate: BitcoinData) {
-        storage.set(exchnageRate, forKey: kExchangeRateKey)
+        let exchnageRateWithCreationTime: BitcoinData = BitcoinData(bpi: exchnageRate.bpi, creationTime: Date().timeIntervalSince1970)
+        storage.set(exchnageRateWithCreationTime, forKey: kExchangeRateKey)
     }
 
     func clear() {

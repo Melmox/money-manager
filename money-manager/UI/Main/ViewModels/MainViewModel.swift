@@ -8,6 +8,7 @@
 import Foundation
 
 struct MainViewModel {
+    let exchangeRate: String
     let balance: String
     let btTopUpBalance: ButtonViewModel
     let btAddTransaction: ButtonViewModel

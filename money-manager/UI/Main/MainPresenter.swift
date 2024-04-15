@@ -15,7 +15,7 @@ protocol MainActions: AnyObject {
 
 protocol IMainPresenter {
     func viewDidLoad()
-    func updateBalance(newBalance: Double?)
+    func updateBalance(amount: Double?)
 }
 
 final class MainPresenter: IMainPresenter, MainActions {
@@ -23,11 +23,12 @@ final class MainPresenter: IMainPresenter, MainActions {
     // MARK: - Properties
     
     weak var view: IMainViewController?
-    private var viewModelFactory: IMainViewModelFactory
+    private let viewModelFactory: IMainViewModelFactory
     private let router: IMainRouter
     private let exchangeRateService: IExchangeRateService
     private let ballanceStorage: IBalanceStorage = BalanceStorage()
     
+    private var exchangeRate: String?
     private var balance: Double? {
         get {
             return ballanceStorage.getBalance()
@@ -57,29 +58,35 @@ final class MainPresenter: IMainPresenter, MainActions {
 
             switch result {
             case .success(let bitcoinData):
-                self?.view?.updateExchangeRateInLabel(exchangeRate: self?.getExchangeRateToUSD(bitcoinData: bitcoinData))
+                self?.setExchangeRateToUSD(bitcoinData: bitcoinData)
+                DispatchQueue.main.async {
+                    self?.updateView()
+                }
             case .failure:
                 break
             }
         }
     }
     
-    private func getExchangeRateToUSD(bitcoinData: BitcoinData) -> String? {
-        bitcoinData.bpi["USD"]?.rate
+    private func setExchangeRateToUSD(bitcoinData: BitcoinData) {
+        exchangeRate = bitcoinData.bpi["USD"]?.rate
+    }
+    
+    private func updateView() {
+        view?.setup(with: viewModelFactory.makeViewModel(actions: self, balance: balance, exchangeRate: exchangeRate))
     }
     
     // MARK: - IMainPresenter
     
     func viewDidLoad() {
-        viewModelFactory.balance = balance
-        view?.setup(with: viewModelFactory.makeViewModel(actions: self))
-        getExchangeRate()
+        updateView()
     }
     
-    func updateBalance(newBalance: Double?) {
-        if balance != nil {
-            balance! += newBalance ?? .zero // swiftlint:disable:this force_unwrapping
-            view?.updateBalanceLabel(balance: balance)
+    func updateBalance(amount: Double?) {
+        if var balance = balance {
+            balance += amount ?? .zero
+            self.balance = balance
+            updateView()
         }
     }
         

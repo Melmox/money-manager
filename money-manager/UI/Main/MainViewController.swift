@@ -9,8 +9,6 @@ import UIKit
 
 protocol IMainViewController: UIViewController, ActivityShowable {
     func setup(with viewModel: MainViewModel)
-    func updateExchangeRateInLabel(exchangeRate: String?)
-    func updateBalanceLabel(balance: Double?)
     func showTopUpBalanceAlert()
 }
 
@@ -128,21 +126,10 @@ final class MainViewController: BaseViewController, IMainViewController {
     // MARK: - IMainViewController
     
     func setup(with viewModel: MainViewModel) {
+        lbExchangeRate.text = viewModel.exchangeRate
         lbBalance.text = viewModel.balance
         btTopUpBalance.setup(with: viewModel.btTopUpBalance)
         btAddTransaction.setup(with: viewModel.btAddTransaction)
-    }
-    
-    func updateExchangeRateInLabel(exchangeRate: String?) {
-        DispatchQueue.main.async {
-            guard let exchangeRate: String = exchangeRate else { return }
-            self.lbExchangeRate.text = "1 BTC = \(exchangeRate) USD"
-        }
-    }
-    
-    func updateBalanceLabel(balance: Double?) {
-        guard let balance: Double = balance else { return }
-        lbBalance.text = "Your current balance is \(balance) BTC"
     }
     
     func showTopUpBalanceAlert() {
@@ -157,7 +144,7 @@ final class MainViewController: BaseViewController, IMainViewController {
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let topUpAction: UIAlertAction = UIAlertAction(title: "Top Up", style: .default) { [weak self] _ in
             let topUpSum: Double? = Double(alertTopUpBalance.textFields?.first?.text ?? "")
-            self?.presenter.updateBalance(newBalance: topUpSum)
+            self?.presenter.updateBalance(amount: topUpSum)
         }
 
         alertTopUpBalance.addAction(cancelAction)

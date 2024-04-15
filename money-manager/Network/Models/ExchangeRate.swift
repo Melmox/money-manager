@@ -16,9 +16,5 @@ struct ExchangeRate: Codable {
 
 struct BitcoinData: Codable {
     let bpi: [String: ExchangeRate]
-    let creationTime: TimeInterval = Date().timeIntervalSince1970
-    
-    private enum CodingKeys: String, CodingKey {
-        case bpi
-    }
+    var creationTime: Double?
 }

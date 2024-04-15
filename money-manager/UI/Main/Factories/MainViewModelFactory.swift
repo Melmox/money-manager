@@ -8,18 +8,16 @@
 import Foundation
 
 protocol IMainViewModelFactory {
-    func makeViewModel(actions: MainActions) -> MainViewModel
-    var balance: Double? { get set }
+    func makeViewModel(actions: MainActions, balance: Double?, exchangeRate: String?) -> MainViewModel
 }
 
 final class MainViewModelFactory: IMainViewModelFactory {
-    
-    var balance: Double?
-    
+        
     // MARK: - IMainViewModelFactory
 
-    func makeViewModel(actions: MainActions) -> MainViewModel {
-        .init(balance: "Your current balance is \(balance ?? .zero) BTC",
+    func makeViewModel(actions: MainActions, balance: Double?, exchangeRate: String?) -> MainViewModel {
+        .init(exchangeRate: exchangeRate != nil ? "1 BTC = \(exchangeRate ?? "") USD" : "",
+              balance: "Your current balance is \(balance ?? .zero) BTC",
               btTopUpBalance: btTopUpBalanceModel(actions: actions),
               btAddTransaction: btAddTransactionModel(actions: actions))
     }

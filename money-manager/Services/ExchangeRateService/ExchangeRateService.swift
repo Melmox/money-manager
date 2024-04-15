@@ -37,7 +37,8 @@ final class ExchangeRateService: IExchangeRateService {
             method: .get)
         
         if let exchangeRate: BitcoinData = exchangeRateStorage.getExchangeRate(),
-           Date().timeIntervalSince1970 < exchangeRate.creationTime + 3600 {
+           let creationTime: TimeInterval = exchangeRate.creationTime,
+           Date().timeIntervalSince1970 < creationTime + 3600 {
             completion(.success(exchangeRate))
             return
         }
