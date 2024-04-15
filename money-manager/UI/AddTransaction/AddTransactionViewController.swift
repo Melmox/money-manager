@@ -45,11 +45,16 @@ final class AddTransactionViewController: BaseViewController, IAddTransactionVie
         presenter.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     // MARK: - Private Functions
     
     private func setupUI() {
         self.view.backgroundColor = .systemBackground
-        self.navigationController?.isNavigationBarHidden = false
         
         setupSvContainer()
         setupTfAmount()

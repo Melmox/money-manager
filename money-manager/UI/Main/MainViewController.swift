@@ -48,10 +48,15 @@ final class MainViewController: BaseViewController, IMainViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     // MARK: - Private Functions
     
     private func setupUI() {
-        self.navigationController?.isNavigationBarHidden = true
         self.view.backgroundColor = .systemBackground
         
         setupLbExchangeRate()
