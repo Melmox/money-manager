@@ -16,13 +16,14 @@ final class AddTransactionAssembly: IAddTransactionAssembly {
     func assemble() -> UIViewController {
 
         let viewModelFactory: IAddTransactionViewModelFactory = AddTransactionViewModelFactory()
-        let router: IAddTransactionRouter = AddTransactionRouter()
+        let router: AddTransactionRouter = AddTransactionRouter()
         let presenter: AddTransactionPresenter = AddTransactionPresenter(
             viewModelFactory: viewModelFactory,
             router: router
         )
         let view: IAddTransactionViewController = AddTransactionViewController(presenter: presenter)
         presenter.view = view
+        router.transitionHandler = view
 
         return view
     }

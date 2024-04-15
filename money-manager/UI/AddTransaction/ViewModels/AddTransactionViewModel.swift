@@ -10,5 +10,6 @@ import Foundation
 struct AddTransactionViewModel {
     let tfAmount: TextFieldViewModel
     let btChooseCategory: ButtonViewModel
+    let btChooseCategoryUiMenu: ButtonUiMenuModel
     let btAdd: ButtonViewModel
 }

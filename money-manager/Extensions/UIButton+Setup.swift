@@ -27,6 +27,18 @@ struct ButtonViewModel {
     }
 }
 
+struct ButtonUiMenuModel {
+    let menuTitle: String?
+    let menuItems: [UIAction]
+    let showsMenuAsPrimaryAction: Bool
+    
+    init(menuTitle: String? = nil, menuItems: [UIAction], showsMenuAsPrimaryAction: Bool) {
+        self.menuTitle = menuTitle
+        self.menuItems = menuItems
+        self.showsMenuAsPrimaryAction = showsMenuAsPrimaryAction
+    }
+}
+
 extension UIButton {
 
     func setup(with viewModel: ButtonViewModel) {
@@ -69,5 +81,12 @@ extension UIButton {
         case .primary:
             return (UIColor.black.cgColor, 1)
         }
+    }
+}
+
+extension UIButton {
+    func setup(with viewModel: ButtonUiMenuModel) {
+        showsMenuAsPrimaryAction = viewModel.showsMenuAsPrimaryAction
+        menu = UIMenu(title: viewModel.menuTitle ?? "", children: viewModel.menuItems)
     }
 }

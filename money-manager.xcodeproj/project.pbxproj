@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B99E7742BCDB9B4009F6E43 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E7732BCDB9B4009F6E43 /* Category.swift */; };
 		8BCE296D2BCB15E6007DDE0D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE296C2BCB15E6007DDE0D /* BaseViewController.swift */; };
 		8BCE29712BCB1729007DDE0D /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29702BCB1729007DDE0D /* FlowCoordinator.swift */; };
 		8BCE29742BCBB9C3007DDE0D /* UIView+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29732BCBB9C3007DDE0D /* UIView+Keyboard.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B99E7732BCDB9B4009F6E43 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		8BCE296C2BCB15E6007DDE0D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		8BCE29702BCB1729007DDE0D /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
 		8BCE29732BCBB9C3007DDE0D /* UIView+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Keyboard.swift"; sourceTree = "<group>"; };
@@ -97,6 +99,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B99E7712BCDB99D009F6E43 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				8B99E7722BCDB9A9009F6E43 /* Models */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		8B99E7722BCDB9A9009F6E43 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8B99E7732BCDB9B4009F6E43 /* Category.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8BCE296A2BCB1580007DDE0D /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +137,7 @@
 		8BCE296E2BCB1705007DDE0D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8B99E7712BCDB99D009F6E43 /* Category */,
 				8BCE29A92BCC42AD007DDE0D /* BalanceStorage */,
 				8BCE29A62BCC2D11007DDE0D /* ExchangeRateStorage */,
 				8BCE29A12BCC2C5F007DDE0D /* Storage */,
@@ -415,6 +434,7 @@
 				8BCE29BB2BCC65A5007DDE0D /* AddTransactionViewController.swift in Sources */,
 				8BCE29912BCBDCF0007DDE0D /* JSONDecoder.swift in Sources */,
 				8BCE29A52BCC2C9B007DDE0D /* UDStorage.swift in Sources */,
+				8B99E7742BCDB9B4009F6E43 /* Category.swift in Sources */,
 				8BCE29A32BCC2C6C007DDE0D /* Storable.swift in Sources */,
 				8BCE298D2BCBDC3D007DDE0D /* ExchangeRate.swift in Sources */,
 				8BCE29892BCBDB0D007DDE0D /* Request.swift in Sources */,

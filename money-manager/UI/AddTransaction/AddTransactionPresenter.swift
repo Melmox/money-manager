@@ -8,23 +8,24 @@
 import Foundation
 
 protocol AddTransactionActions: AnyObject {
-    func didTapBtChooseCategory()
+    func didChooseCategory(category: Category?)
     func didTapBtAdd()
 }
 
 protocol IAddTransactionPresenter {
     func viewDidLoad()
+    func setNewAmount(amount: String?)
 }
 
 final class AddTransactionPresenter: IAddTransactionPresenter, AddTransactionActions {
-
     
     // MARK: - Properties
     
     weak var view: IAddTransactionViewController?
     private var viewModelFactory: IAddTransactionViewModelFactory
     private let router: IAddTransactionRouter
-    private var amount: Double?
+    private var amount: String?
+    private var category: Category?
     
     // MARK: - Initialization
     
@@ -36,19 +37,29 @@ final class AddTransactionPresenter: IAddTransactionPresenter, AddTransactionAct
     // MARK: - Private Functions
     
     
+    private func updateView() {
+        view?.setup(with: viewModelFactory.makeViewModel(actions: self, amount: amount, category: category))
+    }
+    
     // MARK: - IAddTransactionPresenter
     
     func viewDidLoad() {
-        view?.setup(with: viewModelFactory.makeViewModel(actions: self))
+        updateView()
+    }
+    
+    func setNewAmount(amount: String?) {
+        self.amount = amount
+        updateView()
     }
     
     // MARK: - AddTransactionActions
     
-    func didTapBtChooseCategory() {
-        print("didTapBtChooseCategory")
+    func didChooseCategory(category: Category?) {
+        self.category = category
+        updateView()
     }
     
     func didTapBtAdd() {
-        print("didTapBtAdd")
+        router.closeScreen()
     }
 }

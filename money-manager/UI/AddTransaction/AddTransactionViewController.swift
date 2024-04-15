@@ -67,7 +67,7 @@ final class AddTransactionViewController: BaseViewController, IAddTransactionVie
         
         svContainer.axis = .horizontal
         svContainer.alignment = .fill
-        svContainer.distribution = .fillProportionally
+        svContainer.distribution = .fillEqually
         svContainer.spacing = 8
         
         svContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -81,11 +81,11 @@ final class AddTransactionViewController: BaseViewController, IAddTransactionVie
     private func setupTfAmount() {
         svContainer.addArrangedSubview(tfAmount)
         tfAmount.delegate = self
+        tfAmount.addTarget(self, action: #selector(textFieldTextDidChange(_:)), for: .editingChanged)
     }
     
     private func setupBtChooseCategory() {
         svContainer.addArrangedSubview(btChooseCategory)
-        btChooseCategory.setContentHuggingPriority(.required, for: .horizontal)
     }
     
     private func setupBtAdd() {
@@ -105,7 +105,15 @@ final class AddTransactionViewController: BaseViewController, IAddTransactionVie
     func setup(with viewModel: AddTransactionViewModel) {
         tfAmount.setup(with: viewModel.tfAmount)
         btChooseCategory.setup(with: viewModel.btChooseCategory)
+        btChooseCategory.setup(with: viewModel.btChooseCategoryUiMenu)
         btAdd.setup(with: viewModel.btAdd)
+    }
+    
+    // MARK: - Actions
+    
+    @objc
+    private func textFieldTextDidChange(_ textField: UITextField) {
+        presenter.setNewAmount(amount: textField.text)
     }
 }
 
