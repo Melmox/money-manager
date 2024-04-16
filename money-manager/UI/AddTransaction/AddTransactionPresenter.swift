@@ -38,9 +38,14 @@ final class AddTransactionPresenter: IAddTransactionPresenter, AddTransactionAct
     
     // MARK: - Private Functions
     
-    
     private func updateView() {
         view?.setup(with: viewModelFactory.makeViewModel(actions: self, amount: amount, category: category))
+    }
+    
+    private func createTransaction() -> Transaction? {
+        guard let amount: Double = Double(amount ?? ""),
+              let category: TransactionCategory = category else { return nil }
+        return .init(amount: -amount, category: category, date: Date())
     }
     
     // MARK: - IAddTransactionPresenter
@@ -62,6 +67,9 @@ final class AddTransactionPresenter: IAddTransactionPresenter, AddTransactionAct
     }
     
     func didTapBtAdd() {
-        router.closeScreen()
+        guard let transaction: Transaction = createTransaction() else { return }
+        transactionService.saveTransaction(transaction: transaction) { [weak self] _ in
+            self?.router.closeScreen()
+        }
     }
 }
