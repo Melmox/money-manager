@@ -97,7 +97,7 @@ final class MainPresenter: IMainPresenter, MainActions {
     }
     
     func didTapBtAddTransaction() {
-        print("didTapBtAddTransaction")
+        router.showAddTransactionScreen()
     }
     
     // MARK: - Actions
