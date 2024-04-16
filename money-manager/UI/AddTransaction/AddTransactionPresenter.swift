@@ -27,13 +27,15 @@ final class AddTransactionPresenter: IAddTransactionPresenter, AddTransactionAct
     private let router: IAddTransactionRouter
     private var amount: String?
     private var category: TransactionCategory?
+    private weak var delegate: MainDelegate?
     
     // MARK: - Initialization
     
-    init(viewModelFactory: IAddTransactionViewModelFactory, transactionService: ITransactionService, router: IAddTransactionRouter) {
+    init(viewModelFactory: IAddTransactionViewModelFactory, transactionService: ITransactionService, router: IAddTransactionRouter, mainDelegate: MainDelegate) {
         self.viewModelFactory = viewModelFactory
         self.transactionService = transactionService
-        self.router = router        
+        self.router = router
+        self.delegate = mainDelegate
     }
     
     // MARK: - Private Functions
@@ -69,6 +71,7 @@ final class AddTransactionPresenter: IAddTransactionPresenter, AddTransactionAct
     func didTapBtAdd() {
         guard let transaction: Transaction = createTransaction() else { return }
         transactionService.saveTransaction(transaction: transaction) { [weak self] _ in
+            self?.delegate?.updateBalance(amount: transaction.amount)
             self?.router.closeScreen()
         }
     }

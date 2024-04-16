@@ -8,20 +8,20 @@
 import UIKit
 
 protocol IAddTransactionAssembly {
-    func assemble() -> UIViewController
+    func assemble(mainDelegate: MainDelegate, transactionService: ITransactionService) -> UIViewController
 }
 
 final class AddTransactionAssembly: IAddTransactionAssembly {
     
-    func assemble() -> UIViewController {
+    func assemble(mainDelegate: MainDelegate, transactionService: ITransactionService) -> UIViewController {
 
         let viewModelFactory: IAddTransactionViewModelFactory = AddTransactionViewModelFactory()
-        let transactionService: ITransactionService = TransactionService()
         let router: AddTransactionRouter = AddTransactionRouter()
         let presenter: AddTransactionPresenter = AddTransactionPresenter(
             viewModelFactory: viewModelFactory,
             transactionService: transactionService,
-            router: router
+            router: router,
+            mainDelegate: mainDelegate
         )
         let view: IAddTransactionViewController = AddTransactionViewController(presenter: presenter)
         presenter.view = view

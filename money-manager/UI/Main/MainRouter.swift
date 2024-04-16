@@ -8,7 +8,7 @@
 import UIKit
 
 protocol IMainRouter {
-    func showAddTransactionScreen()
+    func showAddTransactionScreen(mainDelegate: MainDelegate)
 }
 
 final class MainRouter: IMainRouter {
@@ -17,19 +17,22 @@ final class MainRouter: IMainRouter {
     
     weak var transitionHandler: UIViewController?
     private let addTransactionAssembly: IAddTransactionAssembly
+    private let transactionService: ITransactionService
     
     // MARK: - Initialization
     
     init(transitionHandler: UIViewController? = nil,
-         addTransactionAssembly: IAddTransactionAssembly) {
+         addTransactionAssembly: IAddTransactionAssembly,
+         transactionService: ITransactionService) {
         self.transitionHandler = transitionHandler
         self.addTransactionAssembly = addTransactionAssembly
+        self.transactionService = transactionService
     }
     
     // MARK: - IMainRouter
     
-    func showAddTransactionScreen() {
-        let view: UIViewController = addTransactionAssembly.assemble()
+    func showAddTransactionScreen(mainDelegate: MainDelegate) {
+        let view: UIViewController = addTransactionAssembly.assemble(mainDelegate: mainDelegate, transactionService: transactionService)
         transitionHandler?.navigationController?.pushViewController(view, animated: true)
     }
 }

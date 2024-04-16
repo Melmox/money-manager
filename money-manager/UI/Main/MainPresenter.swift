@@ -18,7 +18,11 @@ protocol IMainPresenter {
     func updateBalance(amount: Double?)
 }
 
-final class MainPresenter: IMainPresenter, MainActions {
+protocol MainDelegate: AnyObject {
+    func updateBalance(amount: Double?)
+}
+
+final class MainPresenter: IMainPresenter, MainActions, MainDelegate {
     
     // MARK: - Properties
     
@@ -26,6 +30,7 @@ final class MainPresenter: IMainPresenter, MainActions {
     private let viewModelFactory: IMainViewModelFactory
     private let router: IMainRouter
     private let exchangeRateService: IExchangeRateService
+    private let transactionService: ITransactionService
     private let ballanceStorage: IBalanceStorage = BalanceStorage()
     
     private var exchangeRate: String?
@@ -40,10 +45,11 @@ final class MainPresenter: IMainPresenter, MainActions {
     
     // MARK: - Initialization
 
-    init(viewModelFactory: IMainViewModelFactory, router: IMainRouter, exchangeRateService: IExchangeRateService) {
+    init(viewModelFactory: IMainViewModelFactory, router: IMainRouter, exchangeRateService: IExchangeRateService, transactionService: ITransactionService) {
         self.viewModelFactory = viewModelFactory
         self.router = router
         self.exchangeRateService = exchangeRateService
+        self.transactionService = transactionService
         
         NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
@@ -76,17 +82,27 @@ final class MainPresenter: IMainPresenter, MainActions {
         view?.setup(with: viewModelFactory.makeViewModel(actions: self, balance: balance, exchangeRate: exchangeRate))
     }
     
+    private func createTransaction(amount: Double?) -> Transaction? {
+        guard let amount: Double = amount else { return nil }
+        return .init(amount: amount, category: TransactionCategory.other, date: Date())
+    }
+    
     // MARK: - IMainPresenter
     
     func viewDidLoad() {
         updateView()
     }
     
+    // MARK: - MainDelegate
+    
     func updateBalance(amount: Double?) {
-        if var balance = balance {
-            balance += amount ?? .zero
-            self.balance = balance
-            updateView()
+        if var balance = balance,
+           let transaction: Transaction = createTransaction(amount: amount) {
+            transactionService.saveTransaction(transaction: transaction) { [weak self] _ in
+                balance += amount ?? .zero
+                self?.balance = balance
+                self?.updateView()
+            }
         }
     }
         
@@ -97,7 +113,7 @@ final class MainPresenter: IMainPresenter, MainActions {
     }
     
     func didTapBtAddTransaction() {
-        router.showAddTransactionScreen()
+        router.showAddTransactionScreen(mainDelegate: self)
     }
     
     // MARK: - Actions

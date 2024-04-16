@@ -29,7 +29,7 @@ final class BalanceStorage: IBalanceStorage {
     // MARK: - IBalanceStorage
 
     func getBalance() -> Double? {
-        return storage.value(forKey: kBalanceKey)
+        return storage.value(forKey: kBalanceKey) ?? .zero
     }
 
     func saveBalance(_ balance: Double?) {
