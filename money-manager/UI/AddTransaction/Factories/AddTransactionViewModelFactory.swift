@@ -8,7 +8,7 @@
 import UIKit
 
 protocol IAddTransactionViewModelFactory {
-    func makeViewModel(actions: AddTransactionActions, amount: String?, category: Category?) -> AddTransactionViewModel
+    func makeViewModel(actions: AddTransactionActions, amount: String?, category: TransactionCategory?) -> AddTransactionViewModel
 }
 
 final class AddTransactionViewModelFactory: IAddTransactionViewModelFactory {
@@ -17,7 +17,7 @@ final class AddTransactionViewModelFactory: IAddTransactionViewModelFactory {
     
     // MARK: - IAddTransactionViewModelFactory
 
-    func makeViewModel(actions: AddTransactionActions, amount: String?, category: Category?) -> AddTransactionViewModel {
+    func makeViewModel(actions: AddTransactionActions, amount: String?, category: TransactionCategory?) -> AddTransactionViewModel {
         .init(tfAmount: tfAmountModel(amount: amount),
               btChooseCategory: btChooseCategoryModel(category: category),
               btChooseCategoryUiMenu: btChooseCategoryUiMenuModel(actions: actions),
@@ -36,7 +36,7 @@ final class AddTransactionViewModelFactory: IAddTransactionViewModelFactory {
               withAutocomplete: false)
     }
     
-    private func btChooseCategoryModel(category: Category?) -> ButtonViewModel {
+    private func btChooseCategoryModel(category: TransactionCategory?) -> ButtonViewModel {
         .init(style: .primary, title: category?.rawValue ?? "Choose Category", action: {})
     }
     
@@ -51,7 +51,7 @@ final class AddTransactionViewModelFactory: IAddTransactionViewModelFactory {
     }
     
     private func generateUIActions(actions: AddTransactionActions) -> [UIAction] {
-        Category.allCases.map({ category in
+        TransactionCategory.allCases.map({ category in
             UIAction(title: category.rawValue) { [weak actions, category] _ in
                 actions?.didChooseCategory(category: category)
             }

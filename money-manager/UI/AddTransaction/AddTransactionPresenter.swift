@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AddTransactionActions: AnyObject {
-    func didChooseCategory(category: Category?)
+    func didChooseCategory(category: TransactionCategory?)
     func didTapBtAdd()
 }
 
@@ -23,14 +23,16 @@ final class AddTransactionPresenter: IAddTransactionPresenter, AddTransactionAct
     
     weak var view: IAddTransactionViewController?
     private var viewModelFactory: IAddTransactionViewModelFactory
+    private var transactionService: ITransactionService
     private let router: IAddTransactionRouter
     private var amount: String?
-    private var category: Category?
+    private var category: TransactionCategory?
     
     // MARK: - Initialization
     
-    init(viewModelFactory: IAddTransactionViewModelFactory, router: IAddTransactionRouter) {
+    init(viewModelFactory: IAddTransactionViewModelFactory, transactionService: ITransactionService, router: IAddTransactionRouter) {
         self.viewModelFactory = viewModelFactory
+        self.transactionService = transactionService
         self.router = router        
     }
     
@@ -54,7 +56,7 @@ final class AddTransactionPresenter: IAddTransactionPresenter, AddTransactionAct
     
     // MARK: - AddTransactionActions
     
-    func didChooseCategory(category: Category?) {
+    func didChooseCategory(category: TransactionCategory?) {
         self.category = category
         updateView()
     }
