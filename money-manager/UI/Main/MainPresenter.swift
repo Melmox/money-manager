@@ -15,11 +15,13 @@ protocol MainActions: AnyObject {
 
 protocol IMainPresenter {
     func viewDidLoad()
-    func updateBalance(amount: Double?)
+    func topUpBalance(amount: Double?)
+    func loadMoreCellViewModels()
+    var tableViewModels: [[TransactionCellViewModel]]? { get }
 }
 
 protocol MainDelegate: AnyObject {
-    func updateBalance(amount: Double?)
+    func expandBalance(amount: Double?)
 }
 
 final class MainPresenter: IMainPresenter, MainActions, MainDelegate {
@@ -41,6 +43,15 @@ final class MainPresenter: IMainPresenter, MainActions, MainDelegate {
         set(newBalance) {
             ballanceStorage.saveBalance(newBalance)
         }
+    }
+    private(set) var tableViewModels: [[TransactionCellViewModel]]?
+    private var cellViewModels: [TransactionCellViewModel] = []
+        
+    private let limit: Int = 20
+    private var offset: Int = 0
+    private var numberOfLoadedModels: Int = 0
+    private var isNeedToLoadMore: Bool {
+        numberOfLoadedModels >= limit
     }
     
     // MARK: - Initialization
@@ -79,6 +90,7 @@ final class MainPresenter: IMainPresenter, MainActions, MainDelegate {
     }
     
     private func updateView() {
+        loadCellViewModels()
         view?.setup(with: viewModelFactory.makeViewModel(actions: self, balance: balance, exchangeRate: exchangeRate))
     }
     
@@ -87,15 +99,44 @@ final class MainPresenter: IMainPresenter, MainActions, MainDelegate {
         return .init(amount: amount, category: TransactionCategory.other, date: Date())
     }
     
+    private func loadCellViewModels() {
+        offset = 0
+        numberOfLoadedModels = 0
+        
+        transactionService.getTransactionsWith(offset: offset, limit: limit) { [weak self] result in
+            switch result {
+            case .success(let transactions):
+                self?.numberOfLoadedModels = transactions.count
+                self?.offset += transactions.count
+                
+                self?.cellViewModels = transactions.map({ transaction in
+                    return TransactionCellViewModel(transaction: transaction)
+                })
+                self?.makeViewModelFrom(cellViewModels: self?.cellViewModels)
+                
+                self?.view?.reloadData()
+            case .failure:
+                break
+            }
+        }
+    }
+    
+    private func makeViewModelFrom(cellViewModels: [TransactionCellViewModel]?) {
+        guard let cellViewModels = cellViewModels else { return }
+        let splitedNotCompleted: [[TransactionCellViewModel]] = cellViewModels.divide(comparator: { lhs, rhs -> Bool in
+            lhs.transaction.date.dateString() == rhs.transaction.date.dateString()
+        })
+        
+        tableViewModels = splitedNotCompleted
+    }
+    
     // MARK: - IMainPresenter
     
     func viewDidLoad() {
         updateView()
     }
     
-    // MARK: - MainDelegate
-    
-    func updateBalance(amount: Double?) {
+    func topUpBalance(amount: Double?) {
         if var balance = balance,
            let transaction: Transaction = createTransaction(amount: amount) {
             transactionService.saveTransaction(transaction: transaction) { [weak self] _ in
@@ -103,6 +144,38 @@ final class MainPresenter: IMainPresenter, MainActions, MainDelegate {
                 self?.balance = balance
                 self?.updateView()
             }
+        }
+    }
+    
+    func loadMoreCellViewModels() {
+        guard isNeedToLoadMore else { return }
+        
+        transactionService.getTransactionsWith(offset: offset, limit: limit) { [weak self] result in
+            switch result {
+            case .success(let transactions):
+                self?.numberOfLoadedModels = transactions.count
+                self?.offset += transactions.count
+                
+                self?.cellViewModels.append(contentsOf: transactions.map({ transaction in
+                    return TransactionCellViewModel(transaction: transaction)
+                }))
+                
+                self?.makeViewModelFrom(cellViewModels: self?.cellViewModels)
+                
+                self?.view?.reloadData()
+            case .failure:
+                break
+            }
+        }
+    }
+    
+    // MARK: - MainDelegate
+    
+    func expandBalance(amount: Double?) {
+        if var balance = balance {
+            balance += amount ?? .zero
+            self.balance = balance
+            self.updateView()
         }
     }
         

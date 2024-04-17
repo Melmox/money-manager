@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B8526072BCF0516003CACE7 /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8526062BCF0516003CACE7 /* Date+Components.swift */; };
+		8B85260A2BCF079C003CACE7 /* TransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8526092BCF079C003CACE7 /* TransactionHeaderView.swift */; };
+		8B85260C2BCF8F91003CACE7 /* Array+Divide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85260B2BCF8F91003CACE7 /* Array+Divide.swift */; };
 		8B8A3A222BCE4AEC009471BF /* TransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A3A212BCE4AEC009471BF /* TransactionService.swift */; };
 		8B99E7742BCDB9B4009F6E43 /* TransactionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E7732BCDB9B4009F6E43 /* TransactionCategory.swift */; };
 		8B99E7782BCDBC1E009F6E43 /* DBStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E7772BCDBC1E009F6E43 /* DBStorage.swift */; };
@@ -14,6 +17,8 @@
 		8B99E7802BCDC39B009F6E43 /* DBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E77E2BCDC39B009F6E43 /* DBTransaction.swift */; };
 		8B99E7852BCDC56F009F6E43 /* TransactionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E7842BCDC56F009F6E43 /* TransactionStorage.swift */; };
 		8B99E7882BCDC602009F6E43 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E7872BCDC602009F6E43 /* Transaction.swift */; };
+		8B99E78C2BCDCB76009F6E43 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E78B2BCDCB76009F6E43 /* TransactionCell.swift */; };
+		8B99E78E2BCDCB80009F6E43 /* TransactionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E78D2BCDCB80009F6E43 /* TransactionCellViewModel.swift */; };
 		8BCE296D2BCB15E6007DDE0D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE296C2BCB15E6007DDE0D /* BaseViewController.swift */; };
 		8BCE29712BCB1729007DDE0D /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29702BCB1729007DDE0D /* FlowCoordinator.swift */; };
 		8BCE29742BCBB9C3007DDE0D /* UIView+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE29732BCBB9C3007DDE0D /* UIView+Keyboard.swift */; };
@@ -53,6 +58,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B8526062BCF0516003CACE7 /* Date+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Components.swift"; sourceTree = "<group>"; };
+		8B8526092BCF079C003CACE7 /* TransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderView.swift; sourceTree = "<group>"; };
+		8B85260B2BCF8F91003CACE7 /* Array+Divide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Divide.swift"; sourceTree = "<group>"; };
 		8B8A3A212BCE4AEC009471BF /* TransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionService.swift; sourceTree = "<group>"; };
 		8B99E7732BCDB9B4009F6E43 /* TransactionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategory.swift; sourceTree = "<group>"; };
 		8B99E7772BCDBC1E009F6E43 /* DBStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStorage.swift; sourceTree = "<group>"; };
@@ -60,6 +68,8 @@
 		8B99E77E2BCDC39B009F6E43 /* DBTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTransaction.swift; sourceTree = "<group>"; };
 		8B99E7842BCDC56F009F6E43 /* TransactionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStorage.swift; sourceTree = "<group>"; };
 		8B99E7872BCDC602009F6E43 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		8B99E78B2BCDCB76009F6E43 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		8B99E78D2BCDCB80009F6E43 /* TransactionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCellViewModel.swift; sourceTree = "<group>"; };
 		8BCE296C2BCB15E6007DDE0D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		8BCE29702BCB1729007DDE0D /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
 		8BCE29732BCBB9C3007DDE0D /* UIView+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Keyboard.swift"; sourceTree = "<group>"; };
@@ -111,6 +121,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B8526082BCF077D003CACE7 /* TransactionHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				8B8526092BCF079C003CACE7 /* TransactionHeaderView.swift */,
+			);
+			path = TransactionHeaderView;
+			sourceTree = "<group>";
+		};
 		8B99E7712BCDB99D009F6E43 /* TransactionCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +190,24 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		8B99E7892BCDCB5C009F6E43 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B8526082BCF077D003CACE7 /* TransactionHeaderView */,
+				8B99E78A2BCDCB65009F6E43 /* TransactionCell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8B99E78A2BCDCB65009F6E43 /* TransactionCell */ = {
+			isa = PBXGroup;
+			children = (
+				8B99E78B2BCDCB76009F6E43 /* TransactionCell.swift */,
+				8B99E78D2BCDCB80009F6E43 /* TransactionCellViewModel.swift */,
+			);
+			path = TransactionCell;
+			sourceTree = "<group>";
+		};
 		8BCE296A2BCB1580007DDE0D /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +258,8 @@
 				8BCE29AD2BCC463C007DDE0D /* UIButton+Setup.swift */,
 				8BCE29AF2BCC46A0007DDE0D /* UIButton+Action.swift */,
 				8BCE29C02BCC727D007DDE0D /* UITextField+Setup.swift */,
+				8B8526062BCF0516003CACE7 /* Date+Components.swift */,
+				8B85260B2BCF8F91003CACE7 /* Array+Divide.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -295,6 +333,7 @@
 		8BCE299B2BCC26D2007DDE0D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8B99E7892BCDCB5C009F6E43 /* Views */,
 				8BCE299C2BCC26E2007DDE0D /* Protocols */,
 			);
 			path = Common;
@@ -490,11 +529,13 @@
 				8BCE29A02BCC2718007DDE0D /* UIView+Activity.swift in Sources */,
 				8BCE29AB2BCC42CB007DDE0D /* BalanceStorage.swift in Sources */,
 				8BCE29BB2BCC65A5007DDE0D /* AddTransactionViewController.swift in Sources */,
+				8B85260A2BCF079C003CACE7 /* TransactionHeaderView.swift in Sources */,
 				8BCE29912BCBDCF0007DDE0D /* JSONDecoder.swift in Sources */,
 				8BCE29A52BCC2C9B007DDE0D /* UDStorage.swift in Sources */,
 				8B99E7742BCDB9B4009F6E43 /* TransactionCategory.swift in Sources */,
 				8BCE29A32BCC2C6C007DDE0D /* Storable.swift in Sources */,
 				8BCE298D2BCBDC3D007DDE0D /* ExchangeRate.swift in Sources */,
+				8B99E78E2BCDCB80009F6E43 /* TransactionCellViewModel.swift in Sources */,
 				8BCE29892BCBDB0D007DDE0D /* Request.swift in Sources */,
 				8BCE298B2BCBDB41007DDE0D /* HTTPMethod.swift in Sources */,
 				8BCE29A82BCC2D5E007DDE0D /* ExchangeRateStorage.swift in Sources */,
@@ -505,6 +546,7 @@
 				8BCE299E2BCC26EE007DDE0D /* ActivityShowable.swift in Sources */,
 				8BCE299A2BCC0BC0007DDE0D /* ExchangeRateService.swift in Sources */,
 				8BCE29B92BCC659A007DDE0D /* AddTransactionRouter.swift in Sources */,
+				8B99E78C2BCDCB76009F6E43 /* TransactionCell.swift in Sources */,
 				8BCE29792BCBBBB6007DDE0D /* MainAssembly.swift in Sources */,
 				8BCE297B2BCBBBC2007DDE0D /* MainPresenter.swift in Sources */,
 				8BCE29BD2BCC6744007DDE0D /* AddTransactionViewModel.swift in Sources */,
@@ -515,7 +557,9 @@
 				8BCE29832BCBBC3D007DDE0D /* MainViewModelFactory.swift in Sources */,
 				8BF90ADE2BCB07F5001C268A /* AppDelegate.swift in Sources */,
 				8BCE29742BCBB9C3007DDE0D /* UIView+Keyboard.swift in Sources */,
+				8B8526072BCF0516003CACE7 /* Date+Components.swift in Sources */,
 				8B99E7852BCDC56F009F6E43 /* TransactionStorage.swift in Sources */,
+				8B85260C2BCF8F91003CACE7 /* Array+Divide.swift in Sources */,
 				8BCE297D2BCBBBCF007DDE0D /* MainRouter.swift in Sources */,
 				8B99E7802BCDC39B009F6E43 /* DBTransaction.swift in Sources */,
 				8B99E7782BCDBC1E009F6E43 /* DBStorage.swift in Sources */,

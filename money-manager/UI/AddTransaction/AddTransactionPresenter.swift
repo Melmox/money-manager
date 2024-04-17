@@ -71,7 +71,7 @@ final class AddTransactionPresenter: IAddTransactionPresenter, AddTransactionAct
     func didTapBtAdd() {
         guard let transaction: Transaction = createTransaction() else { return }
         transactionService.saveTransaction(transaction: transaction) { [weak self] _ in
-            self?.delegate?.updateBalance(amount: transaction.amount)
+            self?.delegate?.expandBalance(amount: transaction.amount)
             self?.router.closeScreen()
         }
     }

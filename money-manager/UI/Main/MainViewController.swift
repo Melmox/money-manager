@@ -10,6 +10,7 @@ import UIKit
 protocol IMainViewController: UIViewController, ActivityShowable {
     func setup(with viewModel: MainViewModel)
     func showTopUpBalanceAlert()
+    func reloadData()
 }
 
 final class MainViewController: BaseViewController, IMainViewController {
@@ -21,7 +22,7 @@ final class MainViewController: BaseViewController, IMainViewController {
     private let lbBalance: UILabel = UILabel()
     private let btTopUpBalance: UIButton = UIButton()
     private let btAddTransaction: UIButton = UIButton()
-    private let tvTransactionHistory: UITableView = UITableView()
+    private let tvTransactionHistory: UITableView = UITableView(frame: .zero, style: .grouped)
     
     // MARK: - Properties
     
@@ -117,13 +118,17 @@ final class MainViewController: BaseViewController, IMainViewController {
     private func setupTvTransactionHistory() {
         view.addSubview(tvTransactionHistory)
         
-        tvTransactionHistory.backgroundColor = .systemCyan
+        tvTransactionHistory.backgroundColor = .systemBackground
         
+        tvTransactionHistory.delegate = self
+        tvTransactionHistory.dataSource = self
+        tvTransactionHistory.register(TransactionCell.self, forCellReuseIdentifier: "TransactionCell")
+                
         tvTransactionHistory.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tvTransactionHistory.topAnchor.constraint(equalTo: btAddTransaction.bottomAnchor, constant: 24),
-            tvTransactionHistory.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            tvTransactionHistory.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            tvTransactionHistory.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tvTransactionHistory.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tvTransactionHistory.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
         ])
     }
@@ -149,12 +154,63 @@ final class MainViewController: BaseViewController, IMainViewController {
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let topUpAction: UIAlertAction = UIAlertAction(title: "Top Up", style: .default) { [weak self] _ in
             let topUpSum: Double? = Double(alertTopUpBalance.textFields?.first?.text ?? "")
-            self?.presenter.updateBalance(amount: topUpSum)
+            self?.presenter.topUpBalance(amount: topUpSum)
         }
 
         alertTopUpBalance.addAction(cancelAction)
         alertTopUpBalance.addAction(topUpAction)
         present(alertTopUpBalance, animated: true, completion: nil)
+    }
+    
+    func reloadData() {
+        tvTransactionHistory.reloadData()
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension MainViewController: UITableViewDelegate {
+    
+}
+
+// MARK: - UITableViewDataSource
+
+extension MainViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        presenter.tableViewModels?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        presenter.tableViewModels?[section].count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let viewModel: TransactionCellViewModel = presenter.tableViewModels?[indexPath.section][indexPath.row] {
+            let cell: UITableViewCell = self.tvTransactionHistory.dequeueReusableCell(withIdentifier: "TransactionCell", for: indexPath)
+            if let cell: TransactionCell = cell as? TransactionCell {
+                cell.selectionStyle = .none
+                cell.setup(with: viewModel)
+            }
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == tableView.numberOfSections - 1 && indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
+            presenter.loadMoreCellViewModels()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 48
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView: TransactionHeaderView = TransactionHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 48))
+        headerView.setup(with: (presenter.tableViewModels?[section].first))
+        return headerView
     }
 }
 
