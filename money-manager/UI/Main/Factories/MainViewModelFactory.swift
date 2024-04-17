@@ -8,11 +8,31 @@
 import Foundation
 
 protocol IMainViewModelFactory {
-    func makeViewModel() -> MainViewModel
+    func makeViewModel(actions: MainActions, balance: Double?, exchangeRate: String?) -> MainViewModel
 }
 
 final class MainViewModelFactory: IMainViewModelFactory {
-    func makeViewModel() -> MainViewModel {
-        MainViewModel()
+        
+    // MARK: - IMainViewModelFactory
+
+    func makeViewModel(actions: MainActions, balance: Double?, exchangeRate: String?) -> MainViewModel {
+        .init(exchangeRate: exchangeRate != nil ? "1 BTC = \(exchangeRate ?? "") USD" : "",
+              balance: "Your current balance is \(balance ?? .zero) BTC",
+              btTopUpBalance: btTopUpBalanceModel(actions: actions),
+              btAddTransaction: btAddTransactionModel(actions: actions))
+    }
+    
+    // MARK: - Private Functions
+    
+    private func btTopUpBalanceModel(actions: MainActions) -> ButtonViewModel {
+        .init(style: .primary, title: "Top Up Balance", action: { [weak actions] in
+            actions?.didTapBtTopUpBalance()
+        })
+    }
+    
+    private func btAddTransactionModel(actions: MainActions) -> ButtonViewModel {
+        .init(style: .primary, title: "Add Transaction", action: { [weak actions] in
+            actions?.didTapBtAddTransaction()
+        })
     }
 }
