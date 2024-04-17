@@ -6,6 +6,10 @@ The main task of the application is create a Bitcoin expense tracking app with t
 
 The Bitcoin exchange rate we receive from the public [API](https://api.coindesk.com/v1/bpi/currentprice.json)
 
+## Mock data
+
+On branch `add-mock-data` you can open the app with prepared transaction list. I created an additional function to add transactions in CoreData at first load of the application
+
 ## First Screen
 
 Top up balance, list of all transactions, bitcoin exhcange rate
