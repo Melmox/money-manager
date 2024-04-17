@@ -17,6 +17,12 @@ final class MainAssembly: IMainAssembly {
         let addTransactionAssembly: IAddTransactionAssembly = AddTransactionAssembly()
         let transactionService: ITransactionService = TransactionService()
 
+        let firstOpenStorage: IFirstOpenStorage = FirstOpenStorage()
+        if firstOpenStorage.isFirstOpen() ?? true {
+            addMockData(transactionService: transactionService)
+            firstOpenStorage.save(false)
+        }
+        
         let viewModelFactory: MainViewModelFactory = MainViewModelFactory()
         let router: MainRouter = MainRouter(addTransactionAssembly: addTransactionAssembly, transactionService: transactionService)
         let exchangeRateService: IExchangeRateService = ExchangeRateService()
@@ -31,5 +37,12 @@ final class MainAssembly: IMainAssembly {
         router.transitionHandler = view
 
         return UINavigationController(rootViewController: view)
+    }
+    
+    private func addMockData(transactionService: ITransactionService) {
+        for _ in 0..<35 {
+            let transaction: Transaction = Transaction.init(amount: Double.random(in: -100...100), category: TransactionCategory.allCases.randomElement() ?? .other, date: Date(timeIntervalSince1970: TimeInterval.random(in: 1713163070...1713335870)))
+            transactionService.saveTransaction(transaction: transaction) { _ in }
+        }
     }
 }

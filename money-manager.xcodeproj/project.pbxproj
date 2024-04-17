@@ -10,6 +10,7 @@
 		8B8526072BCF0516003CACE7 /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8526062BCF0516003CACE7 /* Date+Components.swift */; };
 		8B85260A2BCF079C003CACE7 /* TransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8526092BCF079C003CACE7 /* TransactionHeaderView.swift */; };
 		8B85260C2BCF8F91003CACE7 /* Array+Divide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85260B2BCF8F91003CACE7 /* Array+Divide.swift */; };
+		8B85260F2BCFA778003CACE7 /* FirstOpenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85260E2BCFA778003CACE7 /* FirstOpenStorage.swift */; };
 		8B8A3A222BCE4AEC009471BF /* TransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A3A212BCE4AEC009471BF /* TransactionService.swift */; };
 		8B8A823C2BD6D9B10023A3AA /* String+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A823B2BD6D9B10023A3AA /* String+Double.swift */; };
 		8B8A823E2BD6F1C00023A3AA /* ErrorShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A823D2BD6F1C00023A3AA /* ErrorShowable.swift */; };
@@ -63,6 +64,7 @@
 		8B8526062BCF0516003CACE7 /* Date+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Components.swift"; sourceTree = "<group>"; };
 		8B8526092BCF079C003CACE7 /* TransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderView.swift; sourceTree = "<group>"; };
 		8B85260B2BCF8F91003CACE7 /* Array+Divide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Divide.swift"; sourceTree = "<group>"; };
+		8B85260E2BCFA778003CACE7 /* FirstOpenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOpenStorage.swift; sourceTree = "<group>"; };
 		8B8A3A212BCE4AEC009471BF /* TransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionService.swift; sourceTree = "<group>"; };
 		8B8A823B2BD6D9B10023A3AA /* String+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Double.swift"; sourceTree = "<group>"; };
 		8B8A823D2BD6F1C00023A3AA /* ErrorShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorShowable.swift; sourceTree = "<group>"; };
@@ -131,6 +133,14 @@
 				8B8526092BCF079C003CACE7 /* TransactionHeaderView.swift */,
 			);
 			path = TransactionHeaderView;
+			sourceTree = "<group>";
+		};
+		8B85260D2BCFA763003CACE7 /* FirstOpenStorage */ = {
+			isa = PBXGroup;
+			children = (
+				8B85260E2BCFA778003CACE7 /* FirstOpenStorage.swift */,
+			);
+			path = FirstOpenStorage;
 			sourceTree = "<group>";
 		};
 		8B99E7712BCDB99D009F6E43 /* TransactionCategory */ = {
@@ -234,6 +244,7 @@
 		8BCE296E2BCB1705007DDE0D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8B85260D2BCFA763003CACE7 /* FirstOpenStorage */,
 				8B99E7832BCDC562009F6E43 /* Transaction */,
 				8B99E7712BCDB99D009F6E43 /* TransactionCategory */,
 				8BCE29A92BCC42AD007DDE0D /* BalanceStorage */,
@@ -541,6 +552,7 @@
 				8B99E7742BCDB9B4009F6E43 /* TransactionCategory.swift in Sources */,
 				8BCE29A32BCC2C6C007DDE0D /* Storable.swift in Sources */,
 				8BCE298D2BCBDC3D007DDE0D /* ExchangeRate.swift in Sources */,
+				8B85260F2BCFA778003CACE7 /* FirstOpenStorage.swift in Sources */,
 				8B99E78E2BCDCB80009F6E43 /* TransactionCellViewModel.swift in Sources */,
 				8BCE29892BCBDB0D007DDE0D /* Request.swift in Sources */,
 				8BCE298B2BCBDB41007DDE0D /* HTTPMethod.swift in Sources */,
