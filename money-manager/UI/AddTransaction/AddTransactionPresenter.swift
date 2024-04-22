@@ -45,10 +45,22 @@ final class AddTransactionPresenter: IAddTransactionPresenter, AddTransactionAct
     }
     
     private func createTransaction() -> Transaction? {
+        guard let amount: Double = amount?.toDouble() else {
+            view?.showError(TransactionError.emptyAmount)
+            return nil
+        }
+        
+        guard let category: TransactionCategory = category else {
+            view?.showError(TransactionError.emptyCategory)
+            return nil
+        }
+        
         guard let currentBalance = self.delegate?.getBalance(),
-              let amount: Double = amount?.toDouble(),
-              let category: TransactionCategory = category,
-              currentBalance - amount >= 0 else { return nil }
+              currentBalance - amount >= 0 else {
+            view?.showError(TransactionError.negativeBalance)
+            return nil
+        }
+        
         return .init(amount: -amount, category: category, date: Date())
     }
     

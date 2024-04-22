@@ -96,7 +96,11 @@ final class MainPresenter: IMainPresenter, MainActions, MainDelegate {
     }
     
     private func createTransaction(amount: Double?) -> Transaction? {
-        guard let amount: Double = amount else { return nil }
+        guard let amount: Double = amount else {
+            view?.showError(TransactionError.emptyAmount)
+            return nil
+        }
+        
         return .init(amount: amount, category: TransactionCategory.other, date: Date())
     }
     
