@@ -14,30 +14,6 @@ enum NetworkError: LocalizedError {
     case unknown
     case invalidURL
     
-    var isNotConnectedToInternet: Bool {
-        switch self {
-        case .network(let error):
-            return (error as? URLError)?.code == .notConnectedToInternet
-        case .parser,
-                .server,
-                .unknown,
-                .invalidURL:
-            return false
-        }
-    }
-    
-    var isCanceled: Bool {
-        switch self {
-        case .network(let error):
-            return (error as? URLError)?.code == .cancelled
-        case .parser,
-                .server,
-                .unknown,
-                .invalidURL:
-            return false
-        }
-    }
-    
     // MARK: - LocalizedError
     
     var errorDescription: String? {

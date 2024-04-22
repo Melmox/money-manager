@@ -8,9 +8,6 @@
 import Foundation
 
 struct ExchangeRate: Codable {
-    let code: String
-    let symbol: String
-    let description: String
     let rate: String
 }
 
