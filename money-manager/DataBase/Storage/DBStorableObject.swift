@@ -15,15 +15,6 @@ public protocol DBStorableObject: NSManagedObject {
 
 public extension DBStorableObject {
     
-    var _identifier: Any? {
-        get {
-            return value(forKey: Self.primaryKey) as Any
-        }
-        set {
-            setValue(newValue, forKey: Self.primaryKey)
-        }
-    }
-    
     static var defaultSortDescriptors: [NSSortDescriptor] {
         return [NSSortDescriptor(key: primaryKey, ascending: true)]
     }
@@ -49,49 +40,6 @@ public extension DBStorableObject {
             assert(false, "Override this method in subclasses before iOS 10!")
             return ""
         }
-    }
-    
-    static func objectByID(_ objID: Any?, in context: NSManagedObjectContext) -> Self? {
-        
-        var object: Self?
-        
-        if let objID: Any = objID {
-            
-            do {
-                let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: _entityName)
-                
-                if let objID: String = objID as? String {
-                    request.predicate = NSPredicate(format: "%K LIKE[c] %@", primaryKey, objID)
-                }
-                
-                if objID is Int || objID is NSNumber {
-                    request.predicate = NSPredicate(format: "self.\(primaryKey) == \(objID)")
-                }
-                
-                let array: [Self]? = try context.fetch(request) as? [Self]
-                object = array?.last
-            } catch {
-                print(error)
-            }
-        }
-        
-        return object
-    }
-    
-    static func objectByPredicate(_ predicate: NSPredicate, in context: NSManagedObjectContext) -> Self? {
-        
-        var object: Self?
-        
-        do {
-            let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: _entityName)
-            request.predicate = predicate
-            let array: [Self]? = try context.fetch(request) as? [Self]
-            object = array?.last
-        } catch {
-            print(error)
-        }
-        
-        return object
     }
     
     static func allObjects(in context: NSManagedObjectContext) -> [Self] {
