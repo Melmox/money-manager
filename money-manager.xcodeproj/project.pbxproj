@@ -11,6 +11,7 @@
 		8B85260A2BCF079C003CACE7 /* TransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8526092BCF079C003CACE7 /* TransactionHeaderView.swift */; };
 		8B85260C2BCF8F91003CACE7 /* Array+Divide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85260B2BCF8F91003CACE7 /* Array+Divide.swift */; };
 		8B8A3A222BCE4AEC009471BF /* TransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A3A212BCE4AEC009471BF /* TransactionService.swift */; };
+		8B8A823C2BD6D9B10023A3AA /* String+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A823B2BD6D9B10023A3AA /* String+Double.swift */; };
 		8B99E7742BCDB9B4009F6E43 /* TransactionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E7732BCDB9B4009F6E43 /* TransactionCategory.swift */; };
 		8B99E7782BCDBC1E009F6E43 /* DBStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E7772BCDBC1E009F6E43 /* DBStorage.swift */; };
 		8B99E77A2BCDBC29009F6E43 /* DBStorableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E7792BCDBC29009F6E43 /* DBStorableObject.swift */; };
@@ -62,6 +63,7 @@
 		8B8526092BCF079C003CACE7 /* TransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderView.swift; sourceTree = "<group>"; };
 		8B85260B2BCF8F91003CACE7 /* Array+Divide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Divide.swift"; sourceTree = "<group>"; };
 		8B8A3A212BCE4AEC009471BF /* TransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionService.swift; sourceTree = "<group>"; };
+		8B8A823B2BD6D9B10023A3AA /* String+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Double.swift"; sourceTree = "<group>"; };
 		8B99E7732BCDB9B4009F6E43 /* TransactionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategory.swift; sourceTree = "<group>"; };
 		8B99E7772BCDBC1E009F6E43 /* DBStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStorage.swift; sourceTree = "<group>"; };
 		8B99E7792BCDBC29009F6E43 /* DBStorableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStorableObject.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				8BCE29C02BCC727D007DDE0D /* UITextField+Setup.swift */,
 				8B8526062BCF0516003CACE7 /* Date+Components.swift */,
 				8B85260B2BCF8F91003CACE7 /* Array+Divide.swift */,
+				8B8A823B2BD6D9B10023A3AA /* String+Double.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				8B85260C2BCF8F91003CACE7 /* Array+Divide.swift in Sources */,
 				8BCE297D2BCBBBCF007DDE0D /* MainRouter.swift in Sources */,
 				8B99E7802BCDC39B009F6E43 /* DBTransaction.swift in Sources */,
+				8B8A823C2BD6D9B10023A3AA /* String+Double.swift in Sources */,
 				8B99E7782BCDBC1E009F6E43 /* DBStorage.swift in Sources */,
 				8BCE29932BCBDD33007DDE0D /* NetworkError.swift in Sources */,
 				8BCE29C12BCC727D007DDE0D /* UITextField+Setup.swift in Sources */,

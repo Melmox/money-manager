@@ -45,7 +45,7 @@ final class AddTransactionPresenter: IAddTransactionPresenter, AddTransactionAct
     }
     
     private func createTransaction() -> Transaction? {
-        guard let amount: Double = Double(amount ?? ""),
+        guard let amount: Double = amount?.toDouble(),
               let category: TransactionCategory = category else { return nil }
         return .init(amount: -amount, category: category, date: Date())
     }

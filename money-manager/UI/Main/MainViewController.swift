@@ -153,7 +153,7 @@ final class MainViewController: BaseViewController, IMainViewController {
 
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let topUpAction: UIAlertAction = UIAlertAction(title: "Top Up", style: .default) { [weak self] _ in
-            let topUpSum: Double? = Double(alertTopUpBalance.textFields?.first?.text ?? "")
+            let topUpSum: Double? = alertTopUpBalance.textFields?.first?.text?.toDouble()
             self?.presenter.topUpBalance(amount: topUpSum)
         }
 
@@ -218,13 +218,12 @@ extension MainViewController: UITableViewDataSource {
 
 extension MainViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let allowedCharacters: CharacterSet = CharacterSet(charactersIn: "0123456789.").union(.init(charactersIn: ""))
+        let allowedCharacters: CharacterSet = CharacterSet(charactersIn: "0123456789.,").union(.init(charactersIn: ""))
         let isValid: Bool = string.rangeOfCharacter(from: allowedCharacters.inverted) == nil
 
         let currentText: String = textField.text ?? ""
         let newString: String = (currentText as NSString).replacingCharacters(in: range, with: string)
-        let components: [String] = newString.components(separatedBy: ".")
-        let numberOfDecimals: Int = components.count - 1
+        let numberOfDecimals: Int = newString.filter { $0 == "." || $0 == "," }.count
 
         return isValid && numberOfDecimals <= 1
     }
