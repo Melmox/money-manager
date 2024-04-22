@@ -22,6 +22,7 @@ protocol IMainPresenter {
 
 protocol MainDelegate: AnyObject {
     func expandBalance(amount: Double?)
+    func getBalance() -> Double?
 }
 
 final class MainPresenter: IMainPresenter, MainActions, MainDelegate {
@@ -177,6 +178,10 @@ final class MainPresenter: IMainPresenter, MainActions, MainDelegate {
             self.balance = balance
             self.updateView()
         }
+    }
+    
+    func getBalance() -> Double? {
+        balance
     }
         
     // MARK: - MainActions
