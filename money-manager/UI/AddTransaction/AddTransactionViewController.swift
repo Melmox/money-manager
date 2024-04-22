@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol IAddTransactionViewController: UIViewController, ActivityShowable {
+protocol IAddTransactionViewController: UIViewController, ActivityShowable, ErrorShowable {
     func setup(with viewModel: AddTransactionViewModel)
 }
 

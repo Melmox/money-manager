@@ -12,6 +12,7 @@
 		8B85260C2BCF8F91003CACE7 /* Array+Divide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85260B2BCF8F91003CACE7 /* Array+Divide.swift */; };
 		8B8A3A222BCE4AEC009471BF /* TransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A3A212BCE4AEC009471BF /* TransactionService.swift */; };
 		8B8A823C2BD6D9B10023A3AA /* String+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A823B2BD6D9B10023A3AA /* String+Double.swift */; };
+		8B8A823E2BD6F1C00023A3AA /* ErrorShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A823D2BD6F1C00023A3AA /* ErrorShowable.swift */; };
 		8B99E7742BCDB9B4009F6E43 /* TransactionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E7732BCDB9B4009F6E43 /* TransactionCategory.swift */; };
 		8B99E7782BCDBC1E009F6E43 /* DBStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E7772BCDBC1E009F6E43 /* DBStorage.swift */; };
 		8B99E77A2BCDBC29009F6E43 /* DBStorableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99E7792BCDBC29009F6E43 /* DBStorableObject.swift */; };
@@ -64,6 +65,7 @@
 		8B85260B2BCF8F91003CACE7 /* Array+Divide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Divide.swift"; sourceTree = "<group>"; };
 		8B8A3A212BCE4AEC009471BF /* TransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionService.swift; sourceTree = "<group>"; };
 		8B8A823B2BD6D9B10023A3AA /* String+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Double.swift"; sourceTree = "<group>"; };
+		8B8A823D2BD6F1C00023A3AA /* ErrorShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorShowable.swift; sourceTree = "<group>"; };
 		8B99E7732BCDB9B4009F6E43 /* TransactionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategory.swift; sourceTree = "<group>"; };
 		8B99E7772BCDBC1E009F6E43 /* DBStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStorage.swift; sourceTree = "<group>"; };
 		8B99E7792BCDBC29009F6E43 /* DBStorableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStorableObject.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				8BCE299D2BCC26EE007DDE0D /* ActivityShowable.swift */,
+				8B8A823D2BD6F1C00023A3AA /* ErrorShowable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				8BCE29B72BCC6594007DDE0D /* AddTransactionPresenter.swift in Sources */,
 				8BCE29972BCBF2F8007DDE0D /* NetworkService.swift in Sources */,
 				8BCE296D2BCB15E6007DDE0D /* BaseViewController.swift in Sources */,
+				8B8A823E2BD6F1C00023A3AA /* ErrorShowable.swift in Sources */,
 				8BCE29832BCBBC3D007DDE0D /* MainViewModelFactory.swift in Sources */,
 				8BF90ADE2BCB07F5001C268A /* AppDelegate.swift in Sources */,
 				8BCE29742BCBB9C3007DDE0D /* UIView+Keyboard.swift in Sources */,

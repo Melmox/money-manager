@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol IMainViewController: UIViewController, ActivityShowable {
+protocol IMainViewController: UIViewController, ActivityShowable, ErrorShowable {
     func setup(with viewModel: MainViewModel)
     func showTopUpBalanceAlert()
     func reloadData()
